@@ -1,4 +1,4 @@
-package com.example.springrestclientexamples.api.domain;
+package com.example.api.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
