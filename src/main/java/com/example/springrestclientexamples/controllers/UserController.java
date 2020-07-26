@@ -9,6 +9,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -31,12 +33,9 @@ public class UserController {
     @PostMapping("/users")
     public String processForm(Model model, ServerWebExchange serverWebExchange) {
 
-        // MultiValueMap<String, String> map = serverWebExchange.getFormData().block();
-        // int limit = Integer.parseInt(map.getFirst("limit"));
-
         int limit = 1;
 
-        List<User> users = apiService.getUsers(limit);
+        Flux<User> users = apiService.getUsers(Mono.just(limit));
 
         model.addAttribute("users", users);
 
